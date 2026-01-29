@@ -17,7 +17,27 @@ module.exports = (sequelize, DataTypes) => {
     }
   }
   Payments.init({
-    jumlah: DataTypes.STRING
+          id: {
+        allowNull: false,
+        autoIncrement: true,
+        primaryKey: true,
+        type: DataTypes.INTEGER
+      },
+      bookingId: {
+        type: DataTypes.INTEGER,
+        references :{
+          model:"booking",
+          key:"id"
+        }
+      },
+      jumlah: {
+        type: DataTypes.INTEGER
+      },
+      status: {
+        type: DataTypes.ENUM("belumBayar", "setengahBayar", "lunas"),
+        allowNull:false,
+        defaultValue:"belumBayar"
+      },
   }, {
     sequelize,
     modelName: 'Payments',
