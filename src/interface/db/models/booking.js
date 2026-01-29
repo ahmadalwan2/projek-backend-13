@@ -25,7 +25,34 @@ module.exports = (sequelize, DataTypes) => {
     }
   }
   Booking.init({
-    tgl_booking: DataTypes.STRING
+         id: {
+        allowNull: false,
+        autoIncrement: true,
+        primaryKey: true,
+        type: DataTypes.INTEGER
+      },
+      userId: {
+        type: DataTypes.INTEGER,
+        references:{
+          model:"user",
+          key:"id"
+        }
+      },
+        carId: {
+        type: DataTypes.INTEGER,
+        references:{
+          model:"car",
+          key:"id"
+        }
+      },
+      tgl_booking: {
+        type: DataTypes.STRING
+      },
+      status: {
+        type: DataTypes.ENUM("pending", "confirmed", "cancelled"),
+        allowNull:false,
+        defaultValue:"pending"
+      }, 
   }, {
     sequelize,
     modelName: 'Booking',
