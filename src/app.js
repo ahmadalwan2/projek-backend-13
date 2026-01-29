@@ -8,12 +8,12 @@ const PORT = 3000;
 
 app.use(express.json());
 
-app.get("/", async(req, res) => {
+app.get("/", async (req, res) => {
     try {
         await sequelize.authenticate();
-        return res.json({message:"berhasil"})
+        return res.json({ message: "db berhasil terkonek" })
     } catch (error) {
-        return res.json({message:error.message})
+        return res.json({ message: error.message })
     }
 })
 app.use("/api", express.static(path.join(__dirname, "uploads")));
@@ -22,6 +22,6 @@ app.use("/api", express.static(path.join(__dirname, "uploads")));
 // app.use("/api/alat", routerAalat);
 // app.use("/api/peminjaman", routerPeminjaman)
 app.listen(PORT, () => {
-  console.log(`Server jalan di port ${PORT}`);
+    console.log(`Server jalan di port ${PORT}`);
 });
 
