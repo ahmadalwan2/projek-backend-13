@@ -10,11 +10,49 @@ module.exports = (sequelize, DataTypes) => {
      * The `models/index` file will call this method automatically.
      */
     static associate(models) {
-      // define association here
+      Booking.hasMany(models.Payment, {
+        foreignKey:"bookingId",
+        as:"payments"
+      })
+      Booking.belongsTo(models.Cars, {
+        foreignKey:"carId",
+        as:"car"
+      })
+      Booking.belongsTo(models.Users, {
+        foreignKey:"userId",
+        as:"user"
+      })
     }
   }
   Booking.init({
-    tgl_booking: DataTypes.STRING
+         id: {
+        allowNull: false,
+        autoIncrement: true,
+        primaryKey: true,
+        type: DataTypes.INTEGER
+      },
+      userId: {
+        type: DataTypes.INTEGER,
+        references:{
+          model:"user",
+          key:"id"
+        }
+      },
+        carId: {
+        type: DataTypes.INTEGER,
+        references:{
+          model:"car",
+          key:"id"
+        }
+      },
+      tgl_booking: {
+        type: DataTypes.STRING
+      },
+      status: {
+        type: DataTypes.ENUM("pending", "confirmed", "cancelled"),
+        allowNull:false,
+        defaultValue:"pending"
+      }, 
   }, {
     sequelize,
     modelName: 'Booking',
