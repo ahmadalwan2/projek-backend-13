@@ -13,6 +13,31 @@ const createUser = async(body) => {
     return await Users.create(body)
 }
 
-const deleteUser = async(id) => {
-    return await Users.destroy(id)
+const deleteUser = async (id) => {
+  const user = await Users.findByPk(id);
+
+  await user.destroy();
+  return user;
+}
+
+const cariEmail = async (email) => {
+  return await Users.findOne({
+    where: { email }
+  });
+}
+
+const updateUserById = async (id, body) => {
+  const user = await Users.findByPk(id);
+
+  await user.update(body);
+  return user;
+}
+
+module.exports = {
+    allUsers,
+    byIdUsers,
+    createUser,
+    deleteUser,
+    cariEmail,
+    updateUserById
 }

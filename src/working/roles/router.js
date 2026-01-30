@@ -5,6 +5,9 @@ const {
     byId
 } = require("./controller.js")
 
+
 router.get("/", semuaRole);
+router.get("/", semuaRole);
+router.get("/cari/:id", byId)
 
 module.exports = router
