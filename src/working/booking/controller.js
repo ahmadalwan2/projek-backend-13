@@ -33,7 +33,7 @@ const createBooking = async (req, res) => {
         const data = await tambahBooking(body);
         return resSukses(res, 201, "Success", "Booking berhasil ditambahkan ", data);
     } catch (error) {
-        return resGagal(res, 400, "Gagal menambah booking", error.message);
+        return resError(res, 400, "error", error.message);
     }
 };
 

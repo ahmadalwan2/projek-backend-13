@@ -7,11 +7,12 @@ const {
     updateBooking,
     deleteBooking
 } = require("./controller.js");
+const { cekId } = require("../../middlewares/middlewareBooking.js")
 
 router.get("/", getAllBooking);
-router.get("/cari/:id", getByIdBooking);
+router.get("/cari/:id", cekId, getByIdBooking);
 router.post("/tambah", createBooking);
-router.put("/ubah/:id", updateBooking);
-router.delete("/hapus/:id", deleteBooking);
+router.put("/ubah/:id", cekId, updateBooking);
+router.delete("/hapus/:id", cekId, deleteBooking);
 
 module.exports = router;

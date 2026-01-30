@@ -1,8 +1,10 @@
 const express = require("express");
-require("dotenv").config();
+require('dotenv').config();
 const sequelize = require("./infrasturcture/config/koneksi.js");
 const routerRole = require("./working/roles/router.js");
-const routerUser = require("./working/users/router.js")
+const routerUser = require("./working/users/router.js");
+const routerBooking = require("./working/booking/router.js");
+
 const path = require("path")
 const app = express();
 const PORT = 3000;
@@ -22,7 +24,8 @@ app.use(express.urlencoded({ extended: true }));
 
 
 app.use("/api/role", routerRole);
-app.use("/api/user", routerUser)
+app.use("/api/user", routerUser);
+app.use("/api/booking", routerBooking);
 app.listen(PORT, () => {
     console.log(`Server jalan di port ${PORT}`);
 });
