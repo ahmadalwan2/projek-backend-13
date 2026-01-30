@@ -5,3 +5,7 @@ const {
     ubahBooking,
     hapusBooking
 } = require("./service.js")
+
+const getAllBooking = async () => {
+
+}
