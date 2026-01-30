@@ -1,6 +1,8 @@
 const express = require("express");
+require("dotenv").config();
 const sequelize = require("./infrasturcture/config/koneksi.js");
-const routerRole = require("./working/roles/router.js")
+const routerRole = require("./working/roles/router.js");
+const routerUser = require("./working/users/router.js")
 const path = require("path")
 const app = express();
 const PORT = 3000;
@@ -16,10 +18,11 @@ app.get("/", async (req, res) => {
     }
 })
 app.use("/api", express.static(path.join(__dirname, "uploads")));
+app.use(express.urlencoded({ extended: true }));
 
 
 app.use("/api/role", routerRole);
-// app.use("/api/peminjaman", routerPeminjaman)
+app.use("/api/user", routerUser)
 app.listen(PORT, () => {
     console.log(`Server jalan di port ${PORT}`);
 });
