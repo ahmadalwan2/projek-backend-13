@@ -33,7 +33,7 @@ const createBooking = async (req, res) => {
         const data = await tambahBooking(body);
         return resSukses(res, 201, "Success", "Booking berhasil ditambahkan ", data);
     } catch (error) {
-        return resError(res, 400, "error", error.message);
+        return resError(res, 400, "Gagal menambah booking", error.message);
     }
 };
 
@@ -46,7 +46,7 @@ const updateBooking = async (req, res) => {
         const data = await ubahBooking(id, body);
         return resSukses(res, 200, "Success", "Booking berhasil diubah", data);
     } catch (error) {
-        return resGagal(res, 400, "Gagal mengubah Booking", error.message);
+        return resError(res, 400, "Gagal mengubah Booking", error.message);
     }
 };
 
@@ -55,11 +55,11 @@ const deleteBooking = async (req, res) => {
         const id = req.params.id;
         const result = await hapusBooking(id);
 
-        if (result === 0) return resGagal(res, 404, "Not Found", "Booking gagal dihapus karena tidak ditemukan");
+        if (result === 0) return resError(res, 404, "Not Found", "Booking gagal dihapus karena tidak ditemukan");
 
         return resSukses(res, 200, "Success", "Booking berhasil dihapus", null);
     } catch (error) {
-        return resGagal(res, 500, "errorrr", error.message)
+        return resError(res, 500, "errorrr", error.message)
 
     }
 };
