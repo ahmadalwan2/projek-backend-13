@@ -11,6 +11,7 @@ const routerPayment = require("./working/payments/router.js");
 const path = require("path")
 const app = express();
 const PORT = 3000;
+process.env.TZ = "Asia/Jakarta"
 
 app.use(express.json());
 
@@ -33,6 +34,6 @@ app.use("/api/car", routerCar);
 app.use("/api/payment", routerPayment);
 // app.use("/api/peminjaman", routerPeminjaman)
 app.listen(PORT, () => {
-    console.log(`Server jalan di port ${PORT}`);
+    console.log(`Server jalan di port ${PORT}}`);
 });
 
