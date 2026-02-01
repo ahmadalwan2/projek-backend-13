@@ -19,7 +19,7 @@ const tambahBooking = async (body) => {
     return await Booking.create(body);
 };
 
-const cariBooking = async (id) => {
+const cariIdBooking = async (id) => {
     return await Booking.findByPk(id)
     // return await Booking.findByPk(id, {
     //     include: [
@@ -47,7 +47,7 @@ const hapusBooking = async (id) => {
 module.exports = {
     tampilBooking,
     tambahBooking,
-    cariBooking,
+    cariIdBooking,
     ubahBooking,
     hapusBooking
 }

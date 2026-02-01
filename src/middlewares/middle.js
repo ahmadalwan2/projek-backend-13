@@ -1,8 +1,8 @@
 const {
-    resError
+  resError
 } = require("../working/payload/payload.js");
 const jwt = require("jsonwebtoken");
-const {Users, Roles} = require("../interface/db/models/index.js")
+const { Users, Roles } = require("../interface/db/models/index.js")
 
 const cekLogin = (req, res, next) => {
   const { email, password } = req.body;
@@ -43,39 +43,39 @@ const isAdmin = (req, res, next) => {
 };
 
 const cekRegister = (req, res, next) => {
-  const {nama, email, password, roleId } = req.body;
+  const { nama, email, password, roleId } = req.body;
 
-  if (!nama ||!email || !password || !roleId) {
+  if (!nama || !email || !password || !roleId) {
     return resError(res, 400, "error", "Semua field wajib di isi");
   }
 
   next();
 };
 
-const cekId = async(req, res, next) => {
-    const {id} = req.params;
-    const data = await Users.findByPk(id);
+const cekId = async (req, res, next) => {
+  const { id } = req.params;
+  const data = await Users.findByPk(id);
 
-    if (!data) {
-        return resError(res, 404, "error", "Data tidak di  temukan")
-    }
-    next()
+  if (!data) {
+    return resError(res, 404, "error", "Data tidak di  temukan")
+  }
+  next()
 }
 
 const cekRole = async (req, res, next) => {
-    const { roleId } = req.body;
-    const role = await Roles.findByPk(roleId);
+  const { roleId } = req.body;
+  const role = await Roles.findByPk(roleId);
 
-    if (!role) {
-      return resError(res, 400, "error","Role tidak valid, pilih 1.(Admin) atau 2.(Customer)");
-    }
-    next();
+  if (!role) {
+    return resError(res, 400, "error", "Role tidak valid, pilih 1.(Admin) atau 2.(Customer)");
+  }
+  next();
 };
 module.exports = {
-    cekLogin,
-    auth,
-    isAdmin,
-    cekRegister,
-    cekId,
-    cekRole
+  cekLogin,
+  auth,
+  isAdmin,
+  cekRegister,
+  cekId,
+  cekRole
 }
