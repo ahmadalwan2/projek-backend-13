@@ -1,18 +1,8 @@
-// semua queri akan ada di sini
 const db = require("../../interface/db/models/");
 const { Booking } = db;
 
 const tampilBooking = async () => {
     return await Booking.findAll()
-    // return await Booking.findAll({
-    //     include: [
-    //         {
-    //             model: Laporan,
-    //             as: "daftar_laporan",
-    //             attributes: ["id", "nama_pelapor", "status"]
-    //         }
-    //     ]
-    // });
 };
 
 const tambahBooking = async (body) => {
@@ -21,15 +11,6 @@ const tambahBooking = async (body) => {
 
 const cariIdBooking = async (id) => {
     return await Booking.findByPk(id)
-    // return await Booking.findByPk(id, {
-    //     include: [
-    //         {
-    //             model: Laporan,
-    //             as: "daftar_laporan",
-    //             attributes: ["id", "nama_pelapor", "status"]
-    //         }
-    //     ]
-    // });
 };
 
 const ubahBooking = async (id, body) => {
