@@ -6,7 +6,7 @@ const cekId = async (req, res, next) => {
         const { id } = req.params;
         const BookingModel = db.Booking || db.booking;
         if (!BookingModel) {
-            return resError(res, 500, "error", "Model Booking tidak ditemukan");
+            return resError(res, 500, "error", "Booking tidak ditemukan");
         };
         const data = await BookingModel.findByPk(id);
 

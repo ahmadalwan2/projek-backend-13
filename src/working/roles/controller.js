@@ -18,7 +18,7 @@ const byId = async (req, res) => {
     try {
         const { id } = req.params;
         const data = await byIdRoles(id);
-        return resSukses(res, 200, "success", "Dara Role berdasarkan Id", data)
+        return resSukses(res, 200, "success", "Data Role berdasarkan Id", data)
     } catch (error) {
         return resError(res, 500, "error", error.message)
     }
