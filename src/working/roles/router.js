@@ -5,9 +5,9 @@ const {
     byId
 } = require("./controller.js")
 
+const {cekId} = require("./midleware.js")
 
 router.get("/", semuaRole);
-router.get("/", semuaRole);
-router.get("/cari/:id", byId)
+router.get("/cari/:id",cekId, byId);
 
 module.exports = router

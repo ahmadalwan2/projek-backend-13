@@ -34,8 +34,8 @@ app.use("/api/user", routerUser);
 app.use("/api/booking", routerBooking);
 app.use("/api/car", routerCar);
 app.use("/api/payment", routerPayment);
-// app.use("/api/peminjaman", routerPeminjaman)
+
 app.listen(PORT, () => {
-    console.log(`Server jalan di port ${PORT}}`);
+    console.log(`Server jalan di port ${PORT} ${new Date()}}`);
 });
 
