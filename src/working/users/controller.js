@@ -34,6 +34,7 @@ const byIdUser = async(req, res) => {
 const buatUser = async(req, res) => {
     try {
         const {nama, email, password, roleId} = req.body;
+
         const hashed = await bcrypt.hash(password, 15)
         const result = await createUser({
             nama, email, password : hashed, roleId

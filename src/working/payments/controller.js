@@ -12,11 +12,12 @@ const getAllPayments = async (req, res) => {
 
 const getById = async (req, res) => {
     try {
-        const id = req.params.id;
+        const { id }= req.params;
         const data = await tampilIdPayment(id);
         if (!data) {
         return resError(res, 404, "error", "Data ID tidak ditemukan", data);
         }
+        return resSukses(res, 200, "success", "Data payment berasarkan Id", data)
     } catch (error) {
         return resError(res, 500, "error", error.message);
     }
@@ -24,8 +25,9 @@ const getById = async (req, res) => {
 
 const createPayment = async (req, res) => {
     try {
-        const id = req.body;
-        const data = await tampilIdPayment(id);
+        const {bookingId, jumlah, status} = req.body;
+        const body = {bookingId, jumlah, status} 
+        const data = await buatPayment(body);
         return resSukses(res, 201, "success", "Data Payment berhasil dibuat", data);   
     } catch (error) {
         return resError(res, 500, "error", error.message);
@@ -38,9 +40,9 @@ const deletePayments = async (req, res) => {
         const data = await hapusPayment(id);
 
         if (!data) {
-        return resError(res, 404, "error", "Data ID tidak ditemukan", data);
+        return resError(res, 404, "error", "Data ID tidak ditemukan");
         }
-        return resSukses(res, 200, "success", "Data Payment berhasil dihapus", data);
+        return resSukses(res, 200, "success", "Data Payment berhasil dihapus");
     } catch (error) {
         return resError(res, 500, "error", error.message);
     }

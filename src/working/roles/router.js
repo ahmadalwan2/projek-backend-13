@@ -8,5 +8,9 @@ const {
 router.get("/", semuaRole);
 router.get("/", semuaRole);
 router.get("/cari/:id", byId);
+const { cekId } = require("./midleware.js")
+
+
+router.get("/cari/:id", cekId, byId);
 
 module.exports = router

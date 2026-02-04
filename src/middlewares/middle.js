@@ -35,9 +35,7 @@ const auth = (req, res, next) => {
 
 const isAdmin = (req, res, next) => {
   if (req.user.roleId !== 1) {
-    return res.status(403).json({
-      message: "Akses ditolak, khusus admin"
-    });
+    return res.status(403).json({message: "Akses ditolak, khusus admin"});
   }
   next();
 };

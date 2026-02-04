@@ -20,7 +20,7 @@ const getById = async (req, res) => {
         if (!data) {
             return resError(res, 404, "error", "Data ID tidak ditemukan", data);
         };
-        return resSukses(res, 200, "success", "Data berdasarkan id berhasil ditampilkan");
+        return resSukses(res, 200, "success", "Data berdasarkan id berhasil ditampilkan", data);
     } catch (error) {
         return resError(res, 500, "error", error.message);
     }
@@ -44,7 +44,7 @@ const deleteCars = async (req, res) => {
 
         await hapusCars(id);
 
-        return resSukses(res, 200, "success", "Data berhasil dihapus", data);
+        return resSukses(res, 200, "success", "Data berhasil dihapus");
     } catch (error) {
         return resError(res, 500, "error", error.message);
     }

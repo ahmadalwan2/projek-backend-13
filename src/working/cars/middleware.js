@@ -32,4 +32,16 @@ const cekId = async (req, res, next) => {
     }
 };
 
-module.exports = {upload, cekId};
+const cekRegister = (req, res, next) => {
+  const { nama_mobil, harga_sewa} = req.body;
+
+  if (!nama_mobil || !harga_sewa || !req.file) {
+    return resError(res, 400, "error", "Semua field wajib di isi");
+  }
+
+  next();
+};
+
+
+
+module.exports = {upload, cekId, cekRegister};
