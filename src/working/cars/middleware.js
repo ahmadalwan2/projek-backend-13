@@ -28,9 +28,24 @@ const cekId = async (req, res, next) => {
       req.data = data;
       next();
     } catch (error) {
-      return resGagal (res, 500, "error", error.message);
+      return resError (res, 500, "error", error.message);
     }
 };
+
+const uploadMiddleware = (req, res, next) => {
+  upload.single("foto_mobil")(req, res, function (err) {
+    if (err instanceof multer.MulterError) {
+      if (err.code === "LIMIT_FILE_SIZE") {
+        return resError(res, 400, "error", "Ukuran file maksimal 2MB");
+      }
+      return resError(res, 400, "error", err.message);
+    } else if (err) {
+      return resError(res, 500, "error", err.message);
+    }
+    next();
+  });
+};
+
 
 const cekRegister = (req, res, next) => {
   const { nama_mobil, harga_sewa} = req.body;
@@ -44,4 +59,4 @@ const cekRegister = (req, res, next) => {
 
 
 
-module.exports = {upload, cekId, cekRegister};
+module.exports = {cekId, cekRegister, uploadMiddleware};
